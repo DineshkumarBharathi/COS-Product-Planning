@@ -1,0 +1,526 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Singapore Construction ERP Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: report with a sticky contents rail on wide screens; site-to-money chain diagram is the one bold moment */
+:root{
+  --bg:#f5f5f2; --surface:#ffffff; --fg:#1d2226; --muted:#5b6268; --line:#d9dbd6;
+  --accent:#1f5f8b; --accent-soft:#e3edf4; --hivis:#e8a317; --hivis-soft:#fbf0d6;
+  --good:#2f7d4f; --good-soft:#e2f1e7; --warn:#a86a00; --warn-soft:#f8ecd2; --bad:#b03a2e; --bad-soft:#f6e1de; --none:#7a7f84; --none-soft:#ebecea;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14181b; --surface:#1c2125; --fg:#e7e9e6; --muted:#9aa2a8; --line:#30373c;
+  --accent:#7db4dc; --accent-soft:#1d3242; --hivis:#f0b63c; --hivis-soft:#3a2f17;
+  --good:#6fc28f; --good-soft:#1c3326; --warn:#e3a94a; --warn-soft:#3a2d17; --bad:#ec8a7e; --bad-soft:#3d2421; --none:#a3a8ac; --none-soft:#2a2f33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14181b; --surface:#1c2125; --fg:#e7e9e6; --muted:#9aa2a8; --line:#30373c;
+  --accent:#7db4dc; --accent-soft:#1d3242; --hivis:#f0b63c; --hivis-soft:#3a2f17;
+  --good:#6fc28f; --good-soft:#1c3326; --warn:#e3a94a; --warn-soft:#3a2d17; --bad:#ec8a7e; --bad-soft:#3d2421; --none:#a3a8ac; --none-soft:#2a2f33; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:0 64px}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-block:40px;font-size:14px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;counter-reset:t}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:2px 0 2px 10px;border-left:2px solid var(--line)}
+nav.toc a:hover{color:var(--fg);border-left-color:var(--accent)}
+nav.toc .lbl{font-family:var(--f-display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px;color:var(--muted);margin-bottom:10px}
+@media (max-width:900px){nav.toc{position:static;padding-block:16px 0}nav.toc ol{flex-direction:row;flex-wrap:wrap;gap:6px}nav.toc a{border:1px solid var(--line);border-radius:999px;padding:2px 10px}}
+main{min-width:0}
+header.hero{padding-block:40px 24px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--f-display);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-stretch:78%;font-weight:800;font-size:clamp(34px,5.4vw,58px);line-height:1.02;margin:10px 0 16px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-stretch:82%;font-weight:800;font-size:clamp(26px,3.2vw,34px);line-height:1.1;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:700;font-size:19px;margin:28px 0 10px}
+.lead{font-size:clamp(17px,1.6vw,19px);max-width:68ch;color:var(--fg)}
+.meta{font-size:13px;color:var(--muted);margin-top:14px}
+section{padding-block:48px 8px;border-bottom:1px solid var(--line);scroll-margin-top:16px}
+section > p{max-width:70ch}
+.muted{color:var(--muted)}
+.note{font-size:14px;color:var(--muted);max-width:70ch}
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px}
+@media (max-width:760px){.figs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fig{background:var(--surface);padding:16px}
+.fig b{display:block;font-family:var(--f-display);font-stretch:80%;font-weight:800;font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.fig span{font-size:13px;color:var(--muted)}
+ul.tight{padding-left:20px;margin:8px 0;max-width:72ch}
+ul.tight li{margin:4px 0}
+.tbl{overflow-x:auto;margin:16px 0;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-display);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.wide table{min-width:980px}
+.mid table{min-width:720px}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.s{background:var(--good-soft);color:var(--good)}.p{background:var(--warn-soft);color:var(--warn)}.w{background:var(--bad-soft);color:var(--bad)}.n{background:var(--none-soft);color:var(--none)}
+/* chain diagram */
+.chain{margin:24px 0 8px;overflow-x:auto}
+.chain-inner{min-width:760px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.step{background:var(--surface);border:1px solid var(--line);padding:14px 12px;position:relative}
+.step:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:10px;height:2px;background:var(--muted)}
+.step small{display:block;font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
+.step b{display:block;font-family:var(--f-display);font-size:16px;line-height:1.2;margin-top:4px}
+.step.gap{background:var(--hivis-soft);border-color:var(--hivis)}
+.cover{grid-column:span 1;font-size:12px;font-weight:600;padding:6px 10px;border-radius:3px}
+.cover.nov{background:var(--accent-soft);color:var(--accent)}
+.cover.syn{background:var(--accent-soft);color:var(--accent);grid-column:4 / span 2}
+.cover.none{background:transparent;color:var(--hivis);border:1px dashed var(--hivis);grid-column:2 / span 2;text-align:center}
+/* vendors */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.filters button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:6px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.vendors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.vendors{grid-template-columns:minmax(0,1fr)}}
+.v{background:var(--surface);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.v header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.v h4{font-family:var(--f-display);font-weight:800;font-size:20px;margin:0}
+.v .tag{font-size:12px;color:var(--muted)}
+.v p{margin:0;font-size:14px}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.pc{grid-template-columns:1fr}}
+.pc h5{margin:0 0 4px;font-family:var(--f-display);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.pc .pro h5{color:var(--good)}.pc .con h5{color:var(--bad)}
+.pc ul{margin:0;padding-left:16px;font-size:13.5px;line-height:1.5}
+.pc li{margin:3px 0}
+.price{border-top:1px solid var(--line);padding-top:10px;font-size:13.5px}
+.price b{font-family:var(--f-display);letter-spacing:.06em;text-transform:uppercase;font-size:12px;color:var(--muted);margin-right:6px}
+.vs{font-size:12px;color:var(--warn)}
+/* gaps */
+.gaps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+@media (max-width:760px){.gaps{grid-template-columns:minmax(0,1fr)}}
+.g{background:var(--surface);border:1px solid var(--line);padding:16px;min-width:0}
+.g .k{font-family:var(--f-mono);font-size:12px;color:var(--hivis)}
+.g h4{font-family:var(--f-display);font-size:18px;margin:2px 0 6px}
+.g p{font-size:14px;margin:0 0 6px}
+.g .who{font-size:13px;color:var(--muted)}
+.callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:16px 18px;margin:20px 0;max-width:76ch}
+.callout p{margin:0}
+ol.road{list-style:none;padding:0;margin:16px 0;display:grid;gap:12px;max-width:80ch}
+ol.road li{background:var(--surface);border:1px solid var(--line);padding:14px 16px}
+ol.road .when{font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+ol.road h4{font-family:var(--f-display);margin:2px 0 4px;font-size:18px}
+ol.road p{margin:0;font-size:14px}
+ol.road .gate{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.src{columns:2;column-gap:32px;font-size:14px;padding-left:18px}
+@media (max-width:760px){.src{columns:1}}
+.src li{break-inside:avoid;margin:4px 0}
+footer{padding-block:24px;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.v{transition:opacity .15s}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <div class="lbl">Contents</div>
+  <ol>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#requirements">Local requirements</a></li>
+    <li><a href="#chain">The missing link</a></li>
+    <li><a href="#vendors">Vendors</a></li>
+    <li><a href="#matrix">Comparison</a></li>
+    <li><a href="#pricing">Pricing &amp; grants</a></li>
+    <li><a href="#gaps">Gaps</a></li>
+    <li><a href="#plan">Our play</a></li>
+    <li><a href="#risks">Risks &amp; next steps</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="eyebrow">Market study · Singapore built environment</div>
+  <h1>Construction ERP in Singapore</h1>
+  <p class="lead">Singapore contractors run the money on a local ERP and the site on a separate field app, and nothing connects the two. The opening is a SOPA-native “claims-to-cash” layer that turns site progress into payment claims and InvoiceNow e-invoices.</p>
+  <p class="meta">Prepared by Dinesh Bharathi · As of 13 October 2026 · Prices from public sources; most vendors quote privately, so treat figures as ranges.</p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <div class="figs">
+    <div class="fig"><b>70%</b><span>of A1 contractors use Novade for permits to work</span></div>
+    <div class="fig"><b>150+</b><span>construction clients claimed by Synergix, the local ERP leader</span></div>
+    <div class="fig"><b>Apr 2031</b><span>all GST-registered firms must e-invoice via InvoiceNow</span></div>
+    <div class="fig"><b>S$50k</b><span>BCA Built Environment PSG cap for digital solutions (up to 50%)</span></div>
+  </div>
+  <ul class="tight" style="margin-top:24px">
+    <li><strong>Market structure:</strong> local customised ERPs (Synergix, HashMicro, Multiable) serve SMEs; global cloud ERPs (NetSuite, Dynamics 365, Acumatica, Odoo) serve mid-size firms but lack Singapore construction logic; SAP serves the largest groups; Novade and Procore run the site.</li>
+    <li><strong>Prices:</strong> from about USD 3,000 a year in licences (Odoo, 15 users) to USD 15,000–80,000 a year (Procore). Local ERPs charge SGD 13,000–40,000+ per implementation.</li>
+    <li><strong>Buying triggers:</strong> the InvoiceNow mandate and grants. Enterprise Singapore's PSG became EDGE on 30 Sep 2026; BCA's construction PSG runs until Dec 2026.</li>
+    <li><strong>Biggest gaps:</strong> field-to-finance disconnect, no SOPA-native claims tool at SME price, subcontractors priced out, no claim-to-e-invoice automation, renewal price shocks after the grant year.</li>
+    <li><strong>Recommended play:</strong> build the claims layer first, integrate with existing accounting, land via main contractors and onboard their subcontractors free, get grant-listed, then expand toward full ERP.</li>
+  </ul>
+</section>
+
+<section id="requirements">
+  <h2>What a Singapore construction ERP must handle</h2>
+  <p>Six local requirements decide every deal. Generic accounting software covers almost none of them.</p>
+  <div class="tbl mid"><table>
+    <thead><tr><th>Requirement</th><th>What the software must do</th><th>Enforced by</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Security of Payment Act (SOPA)</strong></td><td>Payment claims and responses, retention, variations, back-charges, statutory deadlines (payment due 35 days after a claim; response typically within 21 days)</td><td>Statute; adjudication at Singapore Mediation Centre</td></tr>
+      <tr><td><strong>GST InvoiceNow</strong></td><td>Send structured Peppol invoice data to IRAS. Mandatory for new voluntary GST registrants from 1 Apr 2026, all GST-registered firms by 1 Apr 2031</td><td>IRAS / IMDA</td></tr>
+      <tr><td><strong>Electronic Permit to Work</strong></td><td>Mandatory for main contractors on public projects of S$3M or more; keep records 5 years</td><td>MOM (WSH Act)</td></tr>
+      <tr><td><strong>Foreign Worker Levy &amp; CPF</strong></td><td>Payroll for levy tiers and CPF across a largely foreign site workforce</td><td>MOM / CPF Board</td></tr>
+      <tr><td><strong>BCA Integrated Digital Delivery</strong></td><td>BIM data exchange between project stakeholders</td><td>BCA</td></tr>
+      <tr><td><strong>Grant pre-approval</strong></td><td>SMEs buy almost only from pre-approved vendors because grants cover up to 50% of cost</td><td>BCA / Enterprise Singapore / IMDA</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="chain">
+  <h2>The missing link: site to money</h2>
+  <p>A progress claim starts on site, becomes a legal document with a deadline, and ends as a tax invoice. Today two different products cover the two ends, and the middle runs on Excel.</p>
+  <div class="chain" role="img" aria-label="Claims-to-cash chain: site progress, payment claim, certificate, InvoiceNow invoice, accounting. Novade covers site progress; Synergix covers invoice and accounting; the claim and certificate steps in the middle are not covered by any product.">
+    <div class="chain-inner">
+      <div class="step"><small>1 · SITE</small><b>Progress, manpower, materials</b></div>
+      <div class="step gap"><small>2 · LEGAL</small><b>SOPA payment claim</b></div>
+      <div class="step gap"><small>3 · LEGAL</small><b>Payment response / certificate</b></div>
+      <div class="step"><small>4 · TAX</small><b>InvoiceNow e-invoice</b></div>
+      <div class="step"><small>5 · FINANCE</small><b>Books, cost codes, cash</b></div>
+      <div class="cover nov">Novade</div>
+      <div class="cover none">No product owns this · Excel + QS hours</div>
+      <div class="cover syn">Synergix / other ERPs</div>
+    </div>
+  </div>
+  <p class="note">Coverage is the research view of where each leader is strong, not a claim that the other steps are impossible in those products.</p>
+</section>
+
+<section id="vendors">
+  <h2>Vendors: pros, cons and price</h2>
+  <p>Twelve products matter. Rankings published on Programming Insider, e27 and ERP Today place Multiable first and link to Multiable's site; HashMicro's blog ranks HashMicro first. Points from those sources are marked <span class="vs">vendor-sourced</span>.</p>
+  <div class="filters" role="group" aria-label="Filter vendors">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="local" aria-pressed="false">Local ERP</button>
+    <button type="button" data-f="global" aria-pressed="false">Global ERP</button>
+    <button type="button" data-f="field" aria-pressed="false">Site &amp; field</button>
+    <button type="button" data-f="niche" aria-pressed="false">Niche</button>
+  </div>
+  <div class="vendors" id="vlist">
+
+    <article class="v" data-g="local">
+      <header><h4><a href="https://www.synergixtech.com/?p=8239">Synergix</a></h4><span class="tag">Local ERP · incumbent since 1990</span></header>
+      <p>150+ construction clients claimed, including Woh Hup, BHCC, Obayashi Singapore, Ley Choon and Poh Wah.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Deepest local construction workflows: cost-code budgets, subcon advance offset, auto back-charges</li><li>IRAS-registered accounting</li><li>Long-time grant pre-approved vendor</li><li>Strong support reputation</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Priced per implementation; every client is a custom project</li><li>Learning curve and long rollouts</li><li>Only one public verified review</li><li>Weak field app; firms add a second tool</li></ul></div></div>
+      <div class="price"><b>Price</b>SGD 13,000–40,000+ implementation, plus subscription</div>
+    </article>
+
+    <article class="v" data-g="local">
+      <header><h4><a href="https://www.hashmicro.com/construction">HashMicro</a></h4><span class="tag">Local ERP · marketing-led challenger</span></header>
+      <p>Modular cloud ERP with tender/BOQ, budgets, procurement, site inventory, subcontractor billing and S-curves.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Broad construction feature list</li><li>ERP, HR, CRM and assets in one vendor</li><li>Easy to find and demo</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Opaque per-feature pricing</li><li>8–9 public reviews, all 5/5, mostly manufacturing</li><li>Few independent Singapore construction references</li></ul></div></div>
+      <div class="price"><b>Price</b>Not published; one-time per module</div>
+    </article>
+
+    <article class="v" data-g="local">
+      <header><h4><a href="https://www.multiable.com/sg/erp/">Multiable aiM18</a></h4><span class="tag">Regional ERP · Hong Kong</span></header>
+      <p>6,000+ Asian customers; IRAS Accounting Software Register listing with GST F5 and audit-file output.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>IRAS ASR-registered</li><li>No-code workflow setup</li><li>Direct vendor support <span class="vs">vendor-sourced</span></li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Extra charge for weekend support</li><li>Priced above firms under 10 staff</li><li>No named Singapore contractor case studies found</li></ul></div></div>
+      <div class="price"><b>Price</b>Not published; quote</div>
+    </article>
+
+    <article class="v" data-g="local">
+      <header><h4>eBUILD &amp; ProjectVIEW</h4><span class="tag">Minor construction ERPs</span></header>
+      <p>Listed on Capterra Singapore. ProjectVIEW targets large contractors and marine/offshore yards; eBUILD targets developers and contractors.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Construction-specific from the start</li><li>Cloud delivery</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Little public Singapore customer data</li><li>No public pricing</li></ul></div></div>
+      <div class="price"><b>Price</b>Not published</div>
+    </article>
+
+    <article class="v" data-g="global">
+      <header><h4><a href="https://www.capterra.com.sg/software/135757/netsuite">Oracle NetSuite</a></h4><span class="tag">Global cloud ERP</span></header>
+      <p>Chosen by mid-size and regional firms that need multi-entity consolidation.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Strong multi-subsidiary, multi-currency</li><li>Mature platform and partner base</li><li>Has had fixed-price grant packages</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>No out-of-box SOPA claims or retention</li><li>Renewal price increases; cost is top complaint</li><li>Construction needs add-ons</li></ul></div></div>
+      <div class="price"><b>Price</b>Past 5-user grant package: SGD 23,005 year one after discounts</div>
+    </article>
+
+    <article class="v" data-g="global">
+      <header><h4><a href="https://www.erpresearch.com/pages/en-us/business-central-pricing-costs">Dynamics 365 Business Central</a></h4><span class="tag">Global cloud ERP · Microsoft</span></header>
+      <p>The default for firms already on Microsoft 365.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Office, Teams and Copilot integration</li><li>Transparent per-user price; cheap light-user seats</li><li>Large Singapore partner base</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>No construction module out of the box</li><li>List price rose Nov 2025 (USD 70→80)</li><li>Cannot mix Essentials and Premium users</li></ul></div></div>
+      <div class="price"><b>Price</b>USD 80 / 110 / 8 per user per month, plus partner</div>
+    </article>
+
+    <article class="v" data-g="global">
+      <header><h4><a href="https://www.acumatica.com/apex/construction/">Acumatica Construction</a></h4><span class="tag">Global cloud ERP · US</span></header>
+      <p>Dedicated construction edition with job costing and change orders.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Unlimited users, resource-based pricing</li><li>Real construction edition with mobile field access</li><li>Bundled fixed-price package</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>US billing logic, not SOPA</li><li>Weak on CPF and levy <span class="vs">vendor-sourced</span></li><li>Small Singapore reseller network</li></ul></div></div>
+      <div class="price"><b>Price</b>From under USD 1,500/month incl. implementation and support</div>
+    </article>
+
+    <article class="v" data-g="global">
+      <header><h4><a href="https://oec.sh/odoo-pricing/singapore">Odoo</a></h4><span class="tag">Open-source ERP</span></header>
+      <p>Popular with cost-conscious SMEs; Singapore gets a low regional price list.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Cheapest licence in the market</li><li>All apps included; mobile-friendly</li><li>Free Community edition</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>No native SOPA or retention; partners build it</li><li>Partner quality varies widely</li><li>Custom code makes upgrades painful</li></ul></div></div>
+      <div class="price"><b>Price</b>USD 16.90–25.50 per user per month (SG list), plus partner</div>
+    </article>
+
+    <article class="v" data-g="global">
+      <header><h4>SAP S/4HANA</h4><span class="tag">Tier-1 ERP</span></header>
+      <p>For the largest contractors and government-linked groups.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Deepest controls and audit trails</li><li>Scales to mega-projects</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Multi-year implementations</li><li>Very high total cost; specialist consultants</li></ul></div></div>
+      <div class="price"><b>Price</b>Enterprise quote; not relevant to SMEs</div>
+    </article>
+
+    <article class="v" data-g="field">
+      <header><h4><a href="https://www.novade.net/en/pricing/">Novade</a></h4><span class="tag">Field platform · Singapore, 2014</span></header>
+      <p>The site leader: safety, quality, progress and permits to work.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>70% of A1 contractors for permits; 200K permits a month</li><li>Compliant ePTW with offline mode</li><li>Supplies PUB, DSTA, PA, BCA; SG data centre</li><li>Free for 5 users and 5 projects</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Not an ERP: no accounting, billing or claims</li><li>Attendance and timesheets only on Enterprise</li><li>Clients skew to large contractors</li></ul></div></div>
+      <div class="price"><b>Price</b>Free · Standard from USD 39/user/month · Premium &amp; Enterprise on quote</div>
+    </article>
+
+    <article class="v" data-g="field">
+      <header><h4><a href="https://www.procore.com/en-sg/blog/procore-welcomes-cs-global-group-as-our-first-asean-reseller">Procore</a></h4><span class="tag">Construction PM · US, ASEAN hub in SG</span></header>
+      <p>Best-in-class project management for large and multinational contractors.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>RFIs, submittals, drawings, change orders</li><li>Unlimited users</li><li>Large integration ecosystem</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Bill grows with your revenue</li><li>10–14% renewal increases commonly reported</li><li>No SOPA or InvoiceNow localisation found</li></ul></div></div>
+      <div class="price"><b>Price</b>USD 15,000–30,000/yr small, 30,000–80,000 mid-size (third-party estimates)</div>
+    </article>
+
+    <article class="v" data-g="niche">
+      <header><h4>Chillaccount &amp; Payapps</h4><span class="tag">Niche tools</span></header>
+      <p>Chillaccount is low-cost accounting for small subcontractors. Payapps is an Australian claims platform used by 34 of Australia's top 50 builders.</p>
+      <div class="pc"><div class="pro"><h5>Pros</h5><ul><li>Chillaccount: cheap and simple</li><li>Payapps: proves a claims-only product can win a market</li></ul></div>
+      <div class="con"><h5>Cons</h5><ul><li>Chillaccount: limited past ~50 staff <span class="vs">vendor-sourced</span></li><li>Payapps: no Singapore SOPA version found</li></ul></div></div>
+      <div class="price"><b>Price</b>Payapps from AUD 49 per contract per month</div>
+    </article>
+  </div>
+</section>
+
+<section id="matrix">
+  <h2>Comparison matrix</h2>
+  <p>No product is strong on all three things an SME contractor needs at once: construction finance, Singapore compliance and a field app crews will use. Ratings are judgements from the research.</p>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Product</th><th>Best for</th><th>Construction finance</th><th>SG compliance</th><th>Field app</th><th>Pricing model</th><th>Indicative cost</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Synergix</strong></td><td>SME–mid main contractors</td><td><span class="chip s">Strong</span></td><td><span class="chip s">Strong</span></td><td><span class="chip w">Weak</span></td><td>Per implementation</td><td>SGD 13k–40k+ setup</td></tr>
+      <tr><td><strong>HashMicro</strong></td><td>SME–mid, multi-industry</td><td><span class="chip p">Partial</span></td><td><span class="chip p">Partial</span></td><td><span class="chip p">Partial</span></td><td>Per module, quote</td><td>Not published</td></tr>
+      <tr><td><strong>Multiable aiM18</strong></td><td>Mid-size, 10+ staff</td><td><span class="chip p">Partial</span></td><td><span class="chip s">Strong</span></td><td><span class="chip p">Partial</span></td><td>Quote</td><td>Not published</td></tr>
+      <tr><td><strong>NetSuite</strong></td><td>Mid-size, multi-entity</td><td><span class="chip w">Weak</span></td><td><span class="chip p">Partial</span></td><td><span class="chip w">Weak</span></td><td>Base + users + setup</td><td>~SGD 23k yr 1 (5 users)</td></tr>
+      <tr><td><strong>Dynamics 365 BC</strong></td><td>Microsoft-centric</td><td><span class="chip w">Weak</span></td><td><span class="chip p">Partial</span></td><td><span class="chip w">Weak</span></td><td>Per user</td><td>USD 80–110/user/mo</td></tr>
+      <tr><td><strong>Acumatica</strong></td><td>Many users</td><td><span class="chip p">Partial</span></td><td><span class="chip w">Weak</span></td><td><span class="chip p">Partial</span></td><td>Unlimited users</td><td>From &lt;USD 1,500/mo</td></tr>
+      <tr><td><strong>Odoo</strong></td><td>Cost-sensitive SMEs</td><td><span class="chip w">Weak</span></td><td><span class="chip p">Partial</span></td><td><span class="chip p">Partial</span></td><td>Per user</td><td>USD 17–26/user/mo</td></tr>
+      <tr><td><strong>SAP S/4HANA</strong></td><td>Largest groups</td><td><span class="chip s">Strong</span></td><td><span class="chip s">Strong</span></td><td><span class="chip p">Partial</span></td><td>Enterprise quote</td><td>Very high</td></tr>
+      <tr><td><strong>Novade</strong></td><td>Safety-led main contractors</td><td><span class="chip n">None</span></td><td><span class="chip s">Strong (ePTW)</span></td><td><span class="chip s">Strong</span></td><td>Per user / quote</td><td>Free–USD 39/user/mo</td></tr>
+      <tr><td><strong>Procore</strong></td><td>Large GCs</td><td><span class="chip p">Partial</span></td><td><span class="chip w">Weak</span></td><td><span class="chip s">Strong</span></td><td>% of volume</td><td>USD 15k–80k/yr</td></tr>
+      <tr><td><strong>Payapps</strong></td><td>AU subcontractors</td><td><span class="chip s">Strong (AU)</span></td><td><span class="chip n">None for SG</span></td><td><span class="chip n">None</span></td><td>Per contract</td><td>AUD 49+/contract/mo</td></tr>
+      <tr><td><strong>Chillaccount</strong></td><td>Small subcontractors</td><td><span class="chip w">Weak</span></td><td><span class="chip p">Partial</span></td><td><span class="chip n">None</span></td><td>Subscription</td><td>Low</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="pricing">
+  <h2>Pricing and grants</h2>
+  <p>A 15-user contractor pays about USD 3,000 a year (Odoo) to USD 30,000 a year (Procore) before implementation, and grants only fund the first year.</p>
+  <h3>Published licence cost, 15 users</h3>
+  <div class="tbl mid"><table>
+    <thead><tr><th>Product</th><th>Basis</th><th>Annual, USD</th></tr></thead>
+    <tbody>
+      <tr><td>Odoo</td><td>USD 16.90–25.50 per user/month</td><td class="num">3,042–4,590</td></tr>
+      <tr><td>Novade Standard</td><td>USD 39 per user/month; 25% off yearly</td><td class="num">5,265–7,020</td></tr>
+      <tr><td>Dynamics 365 BC</td><td>USD 80–110 per user/month</td><td class="num">14,400–19,800</td></tr>
+      <tr><td>Acumatica APEX</td><td>Bundled, incl. implementation and support</td><td class="num">up to ~18,000</td></tr>
+      <tr><td>Procore</td><td>% of construction volume, unlimited users</td><td class="num">15,000–30,000</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cols">
+    <div>
+      <h3>Five pricing models</h3>
+      <ul class="tight">
+        <li><strong>Per implementation:</strong> Synergix, HashMicro, Multiable</li>
+        <li><strong>Per user per month:</strong> Dynamics, Odoo, Novade</li>
+        <li><strong>Base + users + setup:</strong> NetSuite</li>
+        <li><strong>Unlimited users:</strong> Acumatica</li>
+        <li><strong>% of construction volume:</strong> Procore (about 0.1–0.2% of hard costs)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Hidden costs</h3>
+      <ul class="tight">
+        <li>Renewal increases (Procore 10–14%; Microsoft about 14% in Nov 2025)</li>
+        <li>Partner fees for construction customisation</li>
+        <li>A second system for the field</li>
+        <li>Paid weekend support (Multiable)</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Grants as of October 2026</h3>
+  <div class="tbl mid"><table>
+    <thead><tr><th>Grant</th><th>Support</th><th>Cap</th><th>Catch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BCA Built Environment PSG</strong></td><td>Up to 50%, local SMEs</td><td>S$50,000 per firm (digital), 2026–2031</td><td>Moves into EDGE in Dec 2026</td></tr>
+      <tr><td><strong>EDGE single-function solution</strong></td><td>Up to 50%, SMEs</td><td>S$20,000 cost (S$10,000 grant)</td><td>Software covered 12 months only; no maintenance</td></tr>
+      <tr><td><strong>BCA BETC Grant</strong></td><td>70% SME / 50% non-SME to Mar 2027</td><td>Case by case</td><td>For multi-year transformation</td></tr>
+      <tr><td><strong>InvoiceNow-ready solutions</strong></td><td>Free to SMEs</td><td>Until Mar 2031</td><td>E-invoicing only</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Enterprise Singapore's PSG ceased on 29 Sep 2026; EDGE took over on 30 Sep with a S$100,000 yearly cap per company.</p>
+</section>
+
+<section id="gaps">
+  <h2>What is missing</h2>
+  <p>Eight gaps stand out. The first, second and fourth compound into the single biggest opportunity.</p>
+  <div class="gaps">
+    <div class="g"><div class="k">GAP 1</div><h4>Field and finance are split</h4><p>Novade has no billing; Synergix has no strong field app. Firms run both, joined by Excel.</p><div class="who">Main contractors with 5–50 projects</div></div>
+    <div class="g"><div class="k">GAP 2</div><h4>No SOPA claims tool at SME price</h4><p>Payapps does this in Australia; no Singapore version found. QS teams track claims in spreadsheets.</p><div class="who">Subcontractors, QS teams</div></div>
+    <div class="g"><div class="k">GAP 3</div><h4>Subcontractors priced out</h4><p>Synergix starts at SGD 13,000; Procore scales with revenue; Odoo needs a paid partner.</p><div class="who">Trade and M&amp;E firms under 50 staff</div></div>
+    <div class="g"><div class="k">GAP 4</div><h4>Claim → InvoiceNow is manual</h4><p>Tax invoices follow certified amounts. No vendor shows an end-to-end claim-to-e-invoice flow.</p><div class="who">Every GST-registered contractor to 2031</div></div>
+    <div class="g"><div class="k">GAP 5</div><h4>Foreign-workforce operations are thin</h4><p>Novade attendance is Enterprise-only; lower plans offer English, French and Bahasa only.</p><div class="who">Contractors with large foreign crews</div></div>
+    <div class="g"><div class="k">GAP 6</div><h4>Opaque pricing, long rollouts</h4><p>Local ERPs quote per implementation and customise every install.</p><div class="who">First-time ERP buyers</div></div>
+    <div class="g"><div class="k">GAP 7</div><h4>Renewal shock after the grant year</h4><p>Grants pay year one; Procore and NetSuite renewals rise.</p><div class="who">Every grant-funded buyer</div></div>
+    <div class="g"><div class="k">GAP 8</div><h4>AI is marketing, not workflow</h4><p>Chatbots and form builders exist; nobody checks a subcon claim against measured progress and drafts the response.</p><div class="who">QS and contracts teams</div></div>
+  </div>
+</section>
+
+<section id="plan">
+  <h2>How we address the gaps</h2>
+  <div class="callout"><p><strong>Don't build another full ERP first.</strong> Build the claims-to-cash layer — site progress → SOPA claim → certified amount → InvoiceNow invoice — that plugs into the accounting system a contractor already uses. Then grow into cost control and full ERP.</p></div>
+  <h3>Gap-to-feature map</h3>
+  <div class="tbl mid"><table>
+    <thead><tr><th>Gap</th><th>Feature</th><th>Why it wins</th></tr></thead>
+    <tbody>
+      <tr><td>Field/finance split</td><td>Mobile site diary posting to cost codes and claim lines</td><td>One entry on site updates budget and next claim</td></tr>
+      <tr><td>No SOPA claims</td><td>Claim and response builder with retention, variations, back-charges and deadline alerts</td><td>A missed SOPA deadline costs real money</td></tr>
+      <tr><td>Main ↔ subcon exchange</td><td>Portal where subcontractors submit claims free</td><td>Each main contractor brings its subcontractors</td></tr>
+      <tr><td>Claim → InvoiceNow</td><td>Certified amount becomes a Peppol tax invoice via an access point</td><td>Rides the mandate to 2031</td></tr>
+      <tr><td>Foreign workforce</td><td>QR/face check-in in Bengali, Tamil, Chinese, English, feeding cost codes and payroll</td><td>Languages incumbents' entry plans lack</td></tr>
+      <tr><td>Opaque pricing</td><td>Self-serve signup, published prices, SIA/PSSCOC/REDAS templates</td><td>Live in days, not months</td></tr>
+      <tr><td>Renewal shock</td><td>Multi-year price lock</td><td>Counters the top NetSuite/Procore complaint</td></tr>
+      <tr><td>AI as workflow</td><td>AI reads incoming claims, matches to progress, flags over-claims, drafts responses</td><td>Saves QS hours every month</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cols">
+    <div>
+      <h3>Pricing proposal <span class="muted" style="font-weight:500;font-size:14px">(to validate)</span></h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Customer</th><th>Price (SGD)</th></tr></thead>
+        <tbody>
+          <tr><td>Subcontractor submitting to a paying main contractor</td><td class="num">Free</td></tr>
+          <tr><td>Subcontractor Pro, unlimited users</td><td class="num">49–99/mo</td></tr>
+          <tr><td>Main contractor, per active project</td><td class="num">300–600/mo</td></tr>
+          <tr><td>Mid-size, annual</td><td class="num">Tiered, 3-yr lock</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Package one bundle under the EDGE S$20,000 cost cap and a larger one within the BCA S$50,000 cap.</p>
+    </div>
+    <div>
+      <h3>Go-to-market</h3>
+      <ul class="tight">
+        <li><strong>Target:</strong> SME main contractors below A1, plus their trade and M&amp;E subcontractors</li>
+        <li><strong>Grant-list first:</strong> pre-approval under BCA's digital plan and EDGE</li>
+        <li><strong>Land via the main contractor:</strong> onboard its 20–50 subcontractors free</li>
+        <li><strong>Channels:</strong> QS consultancies, accountants, corporate-secretary firms</li>
+        <li><strong>Lead with InvoiceNow:</strong> every IRAS date notice is a buying trigger</li>
+        <li><strong>Proof:</strong> named case studies with measured outcomes</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Differentiation</h3>
+  <div class="tbl mid"><table>
+    <thead><tr><th>Versus</th><th>Our edge</th></tr></thead>
+    <tbody>
+      <tr><td>Synergix</td><td>Self-serve, published prices, strong mobile field app, live in days</td></tr>
+      <tr><td>Novade</td><td>Owns the money side — claims, certificates, invoices</td></tr>
+      <tr><td>Procore</td><td>SOPA and InvoiceNow native; flat per-project price</td></tr>
+      <tr><td>Odoo / Dynamics / NetSuite</td><td>Construction logic out of the box, no partner customisation</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Build roadmap</h3>
+  <ol class="road">
+    <li><span class="when">MONTHS 0–4</span><h4>MVP</h4><p>SOPA claim and response builder, retention, variations, deadline alerts, PDF output, Xero/QuickBooks sync.</p><span class="gate">Gate: 5 paying contractors running real monthly claims</span></li>
+    <li><span class="when">MONTHS 4–8</span><h4>Network</h4><p>Subcontractor portal, mobile site diary, attendance check-in, multilingual UI.</p><span class="gate">Gate: 3 main contractors, each with 10+ active subcontractors</span></li>
+    <li><span class="when">MONTHS 8–12</span><h4>Compliance</h4><p>InvoiceNow via an access point, grant pre-approval listing, IRAS-aligned audit trail.</p><span class="gate">Gate: listed as a pre-approved solution</span></li>
+    <li><span class="when">MONTHS 12–24</span><h4>Expand</h4><p>AI claim assessment, cost-to-complete, procurement and materials, Novade and ERP connectors.</p><span class="gate">Decision: become the full ERP, or stay the best-in-class layer</span></li>
+  </ol>
+</section>
+
+<section id="risks">
+  <h2>Risks and next steps</h2>
+  <div class="cols">
+    <div>
+      <h3>Risks</h3>
+      <ul class="tight">
+        <li><strong>Incumbent response:</strong> Novade could add claims; Synergix could add a field app</li>
+        <li><strong>Grant transition:</strong> BCA's PSG moves into EDGE in Dec 2026; rules may change</li>
+        <li><strong>Small market:</strong> plan Malaysia and Indonesia from the start</li>
+        <li><strong>Legal precision:</strong> SOPA logic needs a construction lawyer's review</li>
+        <li><strong>Site adoption:</strong> offline mode and simple UI are mandatory</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Next steps</h3>
+      <ul class="tight">
+        <li>Interview 10 contractors (5 main, 5 subcon) and 3 QS firms on the claims process</li>
+        <li>Map the SOPA claim → response → adjudication timeline with a lawyer</li>
+        <li>Talk to two InvoiceNow access points about partnership</li>
+        <li>Get real quotes from Synergix, HashMicro and Novade to confirm price ranges</li>
+        <li>Confirm requirements and lead time for grant pre-approval listing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <ul class="src">
+    <li><a href="https://www.enterprisesg.gov.sg/financial-support/edge-grant">EnterpriseSG — EDGE Grant</a></li>
+    <li><a href="https://www.enterprisesg.gov.sg/financial-support/edge-grant/automation-and-digitalisation/single-function-solutions/accounting-inventory-and-sales-management">EnterpriseSG — EDGE accounting solutions</a></li>
+    <li><a href="https://www.singaporesecretaryservices.com/built-environment-grants-in-singapore-2026-bcas-betc-grant-and-the-construction-specific-psg-explained/">BCA BETC and Built Environment PSG 2026</a></li>
+    <li><a href="https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-invoicenow-requirement">IRAS — GST InvoiceNow requirement</a></li>
+    <li><a href="https://www.comarch.com/trade-and-services/data-management/legal-regulation-changes/singapore-expands-mandatory-gst-invoicenow-reporting-to-all-registered-businesses/">Comarch — InvoiceNow expansion</a></li>
+    <li><a href="https://singaporelegaladvice.com/?p=4389">SOPA progress claims</a></li>
+    <li><a href="https://www.neccontract.com/getmedia/af31fd1a-0672-4b44-ba21-a68e4c0902f6/NEC4_Y-SG.pdf">NEC4 Option Y(SG)</a></li>
+    <li><a href="https://www.gobusiness.gov.sg/images/psg/Desensitised_Oracle_Annex_3_CR_wef_5_May_2022_Part_56.pdf">GoBusiness — NetSuite package annex</a></li>
+    <li><a href="https://www.synergixtech.com/?p=8239">Synergix — construction ERP</a></li>
+    <li><a href="https://www.getapp.sg/software/2107776/taskhub-1">Synergix — GetApp SG</a></li>
+    <li><a href="https://www.hashmicro.com/construction">HashMicro — construction</a></li>
+    <li><a href="https://www.capterra.com.sg/software/151381/hashmicro">HashMicro — Capterra SG</a></li>
+    <li><a href="https://vocus.cc/article/6322e3a5fd8978000128ecd8">Multiable IRAS ASR</a></li>
+    <li><a href="https://www.novade.net/en/pricing/">Novade — pricing</a></li>
+    <li><a href="https://www.novade.net/?p=241193">Novade — Singapore</a></li>
+    <li><a href="https://website-ng.novade.net/?p=235028">Novade — ePTW</a></li>
+    <li><a href="https://projul.com/blog/procore-pricing-analysis-2026/">Projul — Procore pricing</a></li>
+    <li><a href="https://www.getonecrew.com/post/procore-pricing">OneCrew — Procore pricing</a></li>
+    <li><a href="https://www.erpresearch.com/pages/en-us/business-central-pricing-costs">ERP Research — Business Central</a></li>
+    <li><a href="https://www.acumatica.com/apex/construction/">Acumatica APEX for Construction</a></li>
+    <li><a href="https://oec.sh/odoo-pricing/singapore">Odoo Singapore pricing</a></li>
+    <li><a href="https://www.payapps.com/pricing-subcontractors/">Payapps — pricing</a></li>
+    <li><a href="https://programminginsider.com/top-7-popular-erp-software-smart-construction-sustainable-building-singapore-2026/">Programming Insider — Top 7 (vendor-linked)</a></li>
+    <li><a href="https://erp.today/top-5-erp-software-for-singapores-building-material-businesses-in-2026/">ERP Today — Top 5 (vendor-linked)</a></li>
+  </ul>
+</section>
+<footer>Market study for internal discussion · Figures as of 13 October 2026 · Confirm prices with vendor quotes before decisions.</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  var cards=document.querySelectorAll('#vlist .v');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.getAttribute('data-f');
+    btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    cards.forEach(function(c){c.hidden=!(f==='all'||c.getAttribute('data-g')===f)});
+  })});
+})();
+</script>
+
+</body></html>
